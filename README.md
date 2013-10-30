@@ -3,22 +3,19 @@ gossh *Developing*
 
 This is not ssh. This is a help tool for ssh.
 
+use gossh can quickly connect to a system, and scp file to any where you want.
+
 gossh has two parts, cloud-server and client(name gossh)
 
 ### How to join
 all develops in todo [TODO](todo.md)
 
-## Cloud Server
-### Work flow
-1. store `hostname, username, password` to cloud
-2. manage client query
+### How to use
+1. First you need to store `hostname, username, password` to cloud[?](cloud.md)
 
-client query usally `accountName, accountPass, shortHostname, user`
+for example: cloud stores example-vps.com, root, 123456
 
-for example:
-
-	# Server stores example-vps.com, root, 123456
-	# Client goes that
+	# client use such command to connect to example-vps.com
 	gossh root@example echo "hello world"
 
 Some things will happen
@@ -29,12 +26,9 @@ Some things will happen
 4. server send back alalible list of (hostname, password)
 5. client call ssh, scp or rsync to do commands (use sshpass of simply gosshpass)
 
-### How to manage infos to cloud server
-1. use a browser to login with https://
-2. do add, update, delete
-
 ### Other ideas
 for a group use, give them a group-account.
 for personal use, give them a single-account and group is group-account
 
 so personal can use itself conf and also the group conf.
+
