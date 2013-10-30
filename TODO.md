@@ -15,3 +15,17 @@
 ## client
 * command usage help: [go-flags](https://github.com/jessevdk/go-flags)
 * get password [gopass](https://github.com/howeyc/gopass)
+
+## Contributes
+
+	(###) indicates no people doing it.
+
+	- shxsun:	2013-10-30 finished
+		read config from (/etc/gossh.ini, ~/.gossh.ini, $PWD/gossh.ini)
+	- ###:
+		gossh flags parse
+	- ###:
+		server html login page
+	- ###:
+		gossh get password from console
+
