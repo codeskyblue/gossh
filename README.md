@@ -38,5 +38,7 @@ so user can use themself conf and also the group conf.
 ### How to join
 All contributes can be found in [todo](doc/todo.md)
 
-[Develop document](doc/api.md)
+*Document*
 
+* [server api document](doc/api.md)
+* [server storage](doc/storage.md)
