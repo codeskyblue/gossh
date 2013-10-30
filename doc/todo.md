@@ -1,11 +1,11 @@
      xxxxxxxxxxx                  x
           x                       x
           x                       x
-          x        xxxx       xxx x     xxxx
-          x       x    x     x    x    x    x
+          x        xxxx      xxxx x     xxxx
           x       x    x    x     x    x    x
-          x       x    x    xx    x    xx   x
-          x        xxxx      xxxxx      xxxx
+          x       x    x    x     x    x    x
+          x       x    x    x     x    x    x
+          x        xxxx      xxxxxx     xxxx
 
 ## Contributes(贡献者)
 
@@ -17,6 +17,8 @@
 		gossh的命令行参数的解析
 	- ###:
 		gossh首次使用时的用户登录，获取密码（要求不能显示出来）
+	- ###:
+		gossh存储在本地的登陆信息(session信息)
 	- ###:
 		gossh的自动安装包(jumbo)
 
@@ -42,5 +44,5 @@
 #### client
 * command usage help: [go-flags](https://github.com/jessevdk/go-flags)
 * get password [gopass](https://github.com/howeyc/gopass)
-* gcfg
+* [gcfg](https://code.google.com/p/gcfg)
 
