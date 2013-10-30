@@ -4,17 +4,17 @@
 This is not ssh. This is a help tool for ssh.
 
 ### gossh can de what?
-1. quickly connect to a host(without input password is ofcourse), and do commands or copy actions
+1. quickly connect to a host(of course you donot have to type password), and then do shell commands or copy sths.
 2. support alias of hostname(very usefull if your hostname is very long)
 
-gossh has two parts, cloud-server and client(name gossh)
+gossh has two parts, server and client.
 
-### How to use
-1. You need to register a account of server.
-2. Add `hostname, username, password` to [server](doc/server.md). server will store it encrypted.
+### How to use gossh
+1. You need to register a account of [server](doc/server.md).
+2. Add `hostname, username, password` to server. server will store it encrypted.
 
 I suppose you already finished the first two steps.
-And `example-vps.com, root, 123456` has added to the server.
+And record of `example-vps.com, root, 123456` has been added.
 
 	# client use such command to connect to example-vps.com
 	# usally we use ssh root@example-vps.com echo hi, and then password has to input.
@@ -22,8 +22,7 @@ And `example-vps.com, root, 123456` has added to the server.
 	#
 	gossh root@example echo hi
 
-Some things will happen
-
+### The working flow.
 1. client login to server, server check auth
 2. client send user(root), hostAlias(example) to cloud server
 3. server search hostname which user=root and hostname matches example.
@@ -34,8 +33,8 @@ Some things will happen
 for a group use, give them a group-account.
 for personal use, give them a single-account and group is group-account
 
-so personal can use itself conf and also the group conf.
+so user can use themself conf and also the group conf.
 
 ### How to join
-All develops can be found in todo [TODO](doc/todo.md)
+All contributes can be found in [todo](doc/todo.md)
 
