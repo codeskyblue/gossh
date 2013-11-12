@@ -1,6 +1,5 @@
      xxxxxxxxxxx                  x
           x                       x
-          x                       x
           x        xxxx      xxxx x     xxxx
           x       x    x    x     x    x    x
           x       x    x    x     x    x    x
@@ -24,7 +23,7 @@
 
 	- ###:
 		server的登录界面
-	- skyblue:	coding
+	- skyblue:		2013-11-12 ~ 2013-11-12 finished
 		server的数据存储设计(要求加密存储，数据即使恢复不了了，也不能泄漏）
 		最好能包括使用量统计
 	- ###
