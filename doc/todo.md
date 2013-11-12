@@ -11,7 +11,7 @@
 
 	(###) indicates no people doing it.
 
-	- skyblue:	2013-10-30 finished
+	- ###:
 		gossh配置文件的读取，默认的读取顺序($PWD/gossh.ini, ~/.gossh.ini, /etc/gossh.ini)
 	- ###:
 		gossh的命令行参数的解析
@@ -24,7 +24,7 @@
 
 	- ###:
 		server的登录界面
-	- ###
+	- skyblue:	coding
 		server的数据存储设计(要求加密存储，数据即使恢复不了了，也不能泄漏）
 		最好能包括使用量统计
 	- ###
