@@ -10,7 +10,7 @@ REST接口
 	- 返回数据，全是json类型
 	#########################################
 
-	- 登陆(token过期时间，没想好)
+	- 登陆(token过期时间，暂时不管)
 	- login: POST
 		username
 		password

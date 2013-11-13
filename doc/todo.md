@@ -26,14 +26,14 @@
 	- skyblue:		2013-11-12 ~ 2013-11-12 finished
 		server的数据存储设计(要求加密存储，数据即使恢复不了了，也不能泄漏）
 		最好能包括使用量统计
-	- ###
+	- skyblue:		2013-11-13 coding
 		server的数据存取函数
 	- ###
 		server的数据管理页面
 		* server的数据添加
 		* server的数据删除
 		* server的数据更新
-	- ###
+	- skyblue:		2013-11-13 update
 		server的api接口说明文档(提供给client使用）
 
 ### Usefull sources
