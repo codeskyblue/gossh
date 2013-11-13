@@ -39,6 +39,7 @@
 ### Usefull sources
 #### server
 * mysql [xorm](https://github.com/lunny/xorm) or redis [godis](https://github.com/comatosekid/godis)
+* json rest api [jas](https://github.com/coocood/jas)
 
 #### client
 * command usage help: [go-flags](https://github.com/jessevdk/go-flags)
