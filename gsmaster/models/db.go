@@ -2,11 +2,12 @@ package models
 
 import (
 	"errors"
-	_ "github.com/mattn/go-sqlite3"
-	//_ "github.com/lib/pq" //当某时间字段表现为0001-01-01 07:36:42+07:36:42形式的时候 会读不出数据
-	//_ "github.com/bylevel/pq"
-	"github.com/lunny/xorm"
 	"log"
+
+	_ "github.com/lib/pq" //当某时间字段表现为0001-01-01 07:36:42+07:36:42形式的时候 会读不出数据
+	"github.com/lunny/xorm"
+	//_ "github.com/bylevel/pq"
+	//_ "github.com/mattn/go-sqlite3"
 )
 
 var (
@@ -14,19 +15,14 @@ var (
 )
 
 const (
-	DbName         = "./data/sqlite.db"
-	DbUser         = "root"
-	mysqlDriver    = "mymysql"
-	mysqlDrvformat = "%v/%v/"
-	pgDriver       = "postgres"
-	pgDrvFormat    = "user=%v dbname=%v sslmode=disable"
-	dbtype         = "sqlite"
+	DbName = "./data/sqlite.db"
+	dbtype = "sqlite"
 )
 
 func init() {
 	_, err := SetEngine()
 	if err != nil {
-		log.Println(err)
+		log.Fatal(err)
 	}
 }
 
@@ -58,7 +54,8 @@ func SetEngine() (*xorm.Engine, error) {
 }
 
 func CreateDb() {
-	err := Engine.Sync(new(User), new(Group), new(HostUser), new(Host), new(VirtPassword))
+	//err := Engine.Sync(new(User), new(Group), new(HostUser), new(Host), new(VirtPassword))
+	err := Engine.Sync(new(User), new(HostUser), new(Host))
 	if err != nil {
 		log.Fatal(err)
 	}

@@ -2,6 +2,24 @@
 
 For a rds
 
+	simple structure
+	-----------------------------------
+	tblHost
+		id: int64
+		alias: string
+		hostname: string
+		view_count: int64
+	tblUser
+		id: int64
+		username: string
+		password: string
+	tblHostUser
+		host_id: int64
+		user_id: int64
+		
+	
+	safe structure
+	-----------------------------------
 	tblUser
 		id: int64 
 		username: string

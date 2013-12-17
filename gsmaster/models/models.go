@@ -1,9 +1,24 @@
 package models
 
-import (
-	"time"
-)
+type User struct {
+	Id       int64 `xorm:"pk"`
+	Username string
+	Password string
+}
 
+type Host struct {
+	Id        int64 `xorm:"pk"`
+	Alias     string
+	Hostname  string
+	ViewCount int64
+}
+
+type HostUser struct {
+	HostId int64 `xorm:"unique(m)"`
+	UserId int64 `xorm:"unique(m)"`
+}
+
+/*
 type User struct {
 	Id                int64 `xorm:"pk"`
 	Username          string
@@ -38,3 +53,4 @@ type VirtPassword struct {
 	UserId      int64
 	AesPassword string
 }
+*/
