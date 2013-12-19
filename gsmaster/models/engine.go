@@ -4,10 +4,10 @@ import (
 	"errors"
 	"log"
 
-	_ "github.com/lib/pq" //当某时间字段表现为0001-01-01 07:36:42+07:36:42形式的时候 会读不出数据
+	//_ "github.com/lib/pq" //当某时间字段表现为0001-01-01 07:36:42+07:36:42形式的时候 会读不出数据
 	"github.com/lunny/xorm"
 	//_ "github.com/bylevel/pq"
-	//_ "github.com/mattn/go-sqlite3"
+	_ "github.com/mattn/go-sqlite3"
 )
 
 var (
@@ -15,7 +15,7 @@ var (
 )
 
 const (
-	DbName = "./data/sqlite.db"
+	DbName = "./sqlite.db"
 	dbtype = "sqlite"
 )
 
@@ -45,7 +45,7 @@ func SetEngine() (*xorm.Engine, error) {
 	Engine, err = XConDb()
 	//Engine.Mapper = xorm.SameMapper{}
 	//Engine.SetMaxConns(5)
-	//Engine.ShowSQL = true
+	Engine.ShowSQL = true
 
 	cacher := xorm.NewLRUCacher(xorm.NewMemoryStore(), 1000)
 	Engine.SetDefaultCacher(cacher)
@@ -54,8 +54,7 @@ func SetEngine() (*xorm.Engine, error) {
 }
 
 func CreateDb() {
-	//err := Engine.Sync(new(User), new(Group), new(HostUser), new(Host), new(VirtPassword))
-	err := Engine.Sync(new(User), new(HostUser), new(Host))
+	err := Engine.Sync(new(Record))
 	if err != nil {
 		log.Fatal(err)
 	}
