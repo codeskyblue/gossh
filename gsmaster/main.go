@@ -3,23 +3,22 @@ package main
 import (
 	"flag"
 	"fmt"
-	"log"
 	"os"
 
 	"git.apache.org/thrift.git/lib/go/thrift"
 	"github.com/shxsun/gossh/gsmaster/models"
 )
 
-func Test() {
-	host := new(models.Host)
-	host.Hostname = "xyzdas"
-	host.Alias = "abc"
-	n, err := models.Engine.InsertOne(host)
-	if err != nil {
-		log.Fatal(err)
-	}
-	log.Println(n)
-}
+//func Test() {
+//	host := new(models.Host)
+//	host.Hostname = "xyzdas"
+//	host.Alias = "abc"
+//	n, err := models.Engine.InsertOne(host)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	log.Println(n)
+//}
 
 var (
 	server   = flag.Bool("server", false, "run as a server")
@@ -74,5 +73,4 @@ func main() {
 			fmt.Println("error running client:", err)
 		}
 	}
-
 }

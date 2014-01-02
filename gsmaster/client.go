@@ -2,19 +2,31 @@ package main
 
 import (
 	"crypto/tls"
+	"errors"
+	"flag"
 	"fmt"
+	"strings"
 
 	"git.apache.org/thrift.git/lib/go/thrift"
 	"github.com/shxsun/gossh/gsmaster/rpc"
 )
 
 func handleClient(client *rpc.GsClient) (err error) {
-	fmt.Println("look host")
-	r, err := client.LookHost("cq", "work")
+	var host, user string
+	if flag.NArg() < 1 {
+		return errors.New("new at least one arguments")
+	}
+	host = flag.Arg(1)
+	if i := strings.Index(host, "@"); i == -1 {
+		fmt.Println("use default user:", "root")
+		user = "root"
+	}
+
+	r, err := client.LookHost(host, user)
 	if err != nil {
 		return
 	}
-	fmt.Println(r)
+	fmt.Println("result=", r)
 	return nil
 }
 

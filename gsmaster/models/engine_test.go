@@ -6,24 +6,30 @@ func init() {
 	CreateDb()
 }
 
+var (
+	user = "work"
+	pass = "krow"
+)
+
 func TestSyncRecord(t *testing.T) {
 	r := new(Record)
 	r.Hostname = "example.com"
-	r.User = "work"
-	r.Pass = "krow"
+	r.User = user
+	r.Pass = pass
 
-	err := r.Sync()
-	if err != nil {
+	if err := r.Sync(); err != nil {
 		t.Fatal(err)
 	}
 
 	r.Pass = ""
-	err = r.Get()
-	if err != nil {
+	var rc *Record
+	var err error
+	if rc, err = GetRecord(r.Hostname, user); err != nil {
 		t.Fatal(err)
 	}
-	if r.Pass != "krow" {
+
+	if rc.Pass != "krow" {
 		t.Error("expect krow, but not this")
 	}
-	t.Log(r)
+	t.Log(rc)
 }
