@@ -35,8 +35,12 @@ for personal use, give them a single-account and group is group-account
 
 so user can use themself conf and also the group conf.
 
-### How to join
+### How to join develop
 All contributes can be found in [todo](doc/todo.md)
+
+download thrift if you want to change protocal: <http://mirror.esocc.com/apache/thrift/0.9.1/thrift-0.9.1.tar.gz>
+
+use `thrift --gen go rpc.thrift` to generate go code.
 
 *Document*
 

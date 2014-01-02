@@ -43,7 +43,7 @@ func main() {
 		protocolFactory = thrift.NewTCompactProtocolFactory()
 	case "simplejson":
 		protocolFactory = thrift.NewTSimpleJSONProtocolFactory()
-	case "json": // this is working well
+	case "json": // json is working well
 		protocolFactory = thrift.NewTJSONProtocolFactory()
 	case "binary", "":
 		protocolFactory = thrift.NewTBinaryProtocolFactoryDefault()

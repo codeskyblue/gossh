@@ -20,6 +20,7 @@ type Data struct {
 	Hostname string `thrift:"hostname,1,required"`
 	Password string `thrift:"password,2,required"`
 	Username string `thrift:"username,3,required"`
+	ErrorA1  string `thrift:"error,4,required"`
 }
 
 func NewData() *Data {
@@ -49,6 +50,10 @@ func (p *Data) Read(iprot thrift.TProtocol) error {
 			}
 		case 3:
 			if err := p.readField3(iprot); err != nil {
+				return err
+			}
+		case 4:
+			if err := p.readField4(iprot); err != nil {
 				return err
 			}
 		default:
@@ -93,6 +98,15 @@ func (p *Data) readField3(iprot thrift.TProtocol) error {
 	return nil
 }
 
+func (p *Data) readField4(iprot thrift.TProtocol) error {
+	if v, err := iprot.ReadString(); err != nil {
+		return fmt.Errorf("error reading field 4: %s")
+	} else {
+		p.ErrorA1 = v
+	}
+	return nil
+}
+
 func (p *Data) Write(oprot thrift.TProtocol) error {
 	if err := oprot.WriteStructBegin("Data"); err != nil {
 		return fmt.Errorf("%T write struct begin error: %s", p, err)
@@ -104,6 +118,9 @@ func (p *Data) Write(oprot thrift.TProtocol) error {
 		return err
 	}
 	if err := p.writeField3(oprot); err != nil {
+		return err
+	}
+	if err := p.writeField4(oprot); err != nil {
 		return err
 	}
 	if err := oprot.WriteFieldStop(); err != nil {
@@ -150,6 +167,19 @@ func (p *Data) writeField3(oprot thrift.TProtocol) (err error) {
 	}
 	if err := oprot.WriteFieldEnd(); err != nil {
 		return fmt.Errorf("%T write field end error 3:username: %s", p, err)
+	}
+	return err
+}
+
+func (p *Data) writeField4(oprot thrift.TProtocol) (err error) {
+	if err := oprot.WriteFieldBegin("error", thrift.STRING, 4); err != nil {
+		return fmt.Errorf("%T write field begin error 4:error: %s", p, err)
+	}
+	if err := oprot.WriteString(string(p.ErrorA1)); err != nil {
+		return fmt.Errorf("%T.error (4) field write error: %s", p)
+	}
+	if err := oprot.WriteFieldEnd(); err != nil {
+		return fmt.Errorf("%T write field end error 4:error: %s", p, err)
 	}
 	return err
 }

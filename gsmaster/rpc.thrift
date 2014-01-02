@@ -4,6 +4,7 @@ struct Data {
 	1: required string hostname;
 	2: required string password;
 	3: required string username;
+	4: required string error;
 }
 
 service Gs {
