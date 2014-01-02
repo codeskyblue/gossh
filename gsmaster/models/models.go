@@ -36,12 +36,12 @@ func (r *Record) Sync() (err error) {
 	return
 }
 
-func AddRecord(r *Record) (err error) {
+func addRecord(r *Record) (err error) {
 	_, err = Engine.InsertOne(r)
 	return
 }
 
-func GetRecord(host, user string) (r *Record, err error) {
+func getRecord(host, user string) (r *Record, err error) {
 	r = new(Record)
 	ok, err := Engine.Where("hostname=? AND user=?", host, user).Get(r)
 	if !ok {
@@ -58,18 +58,21 @@ func DelRecord(host, user string) error {
 }
 
 func SyncRecord(r *Record) (err error) {
-	oldr, err := GetRecord(r.Hostname, r.User)
+	oldr, err := getRecord(r.Hostname, r.User)
 	log.Println(oldr, err)
 	if oldr != nil && err == nil {
 		_, err = Engine.Update(r)
 		return
 	} else {
-		err = AddRecord(r)
+		err = addRecord(r)
 		return
 	}
 }
 
-//func LookHost(alias string) []
+func LookHost(alias string) (hostname, password string, err error) {
+	err = errors.New("match too many hosts")
+	return
+}
 
 //type Statistic struct {
 //	Hostname  string
@@ -93,45 +96,3 @@ type HostUser struct {
 	Host Host `xorm:"host_id"`
 	User User `xorm:"user_id"`
 }
-
-//type HostUser struct {
-//	HostId int64 `xorm:"unique(m)"`
-//	UserId int64 `xorm:"unique(m)"`
-//}
-
-/*
-type User struct {
-	Id                int64 `xorm:"pk"`
-	Username          string
-	HashLoginPassword string // login password
-	ViewCount         int64
-	BornTime          time.Time
-	Type              string
-	AesInfoPassword   string // passwd to crypt host:user,pass crypted by login password
-}
-
-type Group struct {
-	UserId      int64 `xorm:"unique(g)"`
-	GroupUserId int64 `xorm:"unique(g)"`
-}
-
-type HostUser struct {
-	Id          int64 `xorm:"pk"`
-	UserId      int64
-	Username    string
-	AesPassword string // crypted password by user
-}
-
-type Host struct {
-	Hostname   string `xorm:"unique(uh)"`
-	HostUserId int64  `xorm:"unique(uh)"`
-	ViewCount  int64
-}
-
-// AesPassword: temp stored host:user,pass crypted too. but passwd store by user as token.
-type VirtPassword struct {
-	Id          int64 `xorm:"pk"`
-	UserId      int64
-	AesPassword string
-}
-*/

@@ -4,22 +4,11 @@ import (
 	"flag"
 	"fmt"
 	"log"
+	"os"
 
-	//"github.com/coocood/jas"
+	"git.apache.org/thrift.git/lib/go/thrift"
 	"github.com/shxsun/gossh/gsmaster/models"
 )
-
-//type V1 struct{}
-
-//func (*V1) PostLogin(ctx *jas.Context) {
-//	user := ctx.RequireString("username")
-//	pass := ctx.RequireString("password")
-//	fmt.Println(user, pass)
-//	ctx.Data = "success"
-//}
-
-//func (*V1) GetList(ctx *jas.Context) {
-//}
 
 func Test() {
 	host := new(models.Host)
@@ -33,8 +22,13 @@ func Test() {
 }
 
 var (
-	server = flag.Bool("server", false, "run as a server")
-	token  = flag.String("token", "abcdefg", "auth token for check identity")
+	server   = flag.Bool("server", false, "run as a server")
+	token    = flag.String("token", "abcdefg", "auth token for check identity")
+	addr     = flag.String("addr", "localhost:6523", "server address")
+	secure   = flag.Bool("secure", false, "enable secure")
+	protocol = "binary"
+	buffered = false
+	framed   = true
 )
 
 func main() {
@@ -44,14 +38,41 @@ func main() {
 		models.CreateDb()
 	}
 
-	Test()
-	//router := jas.NewRouter(new(V1))
-	//fmt.Println(router.HandledPaths(true))
-	//http.Handle(router.BasePath, router)
-	//err := http.ListenAndServe(":8033", nil)
-	//if err != nil {
-	//	log.Fatal(err)
-	//}
+	var protocolFactory thrift.TProtocolFactory
+	switch protocol {
+	case "compact":
+		protocolFactory = thrift.NewTCompactProtocolFactory()
+	case "simplejson":
+		protocolFactory = thrift.NewTSimpleJSONProtocolFactory()
+	case "json": // this is working well
+		protocolFactory = thrift.NewTJSONProtocolFactory()
+	case "binary", "":
+		protocolFactory = thrift.NewTBinaryProtocolFactoryDefault()
+	default:
+		fmt.Fprint(os.Stderr, "Invalid protocol specified", protocol, "\n")
+		//Usage()
+		os.Exit(1)
+	}
 
-	//hu := new(models.HostUser)
+	var transportFactory thrift.TTransportFactory
+	if buffered {
+		transportFactory = thrift.NewTBufferedTransportFactory(8192)
+	} else {
+		transportFactory = thrift.NewTTransportFactory()
+	}
+
+	if framed {
+		transportFactory = thrift.NewTFramedTransportFactory(transportFactory)
+	}
+
+	if *server {
+		if err := runServer(transportFactory, protocolFactory, *addr, *secure); err != nil {
+			fmt.Println("error running server:", err)
+		}
+	} else {
+		if err := runClient(transportFactory, protocolFactory, *addr, *secure); err != nil {
+			fmt.Println("error running client:", err)
+		}
+	}
+
 }
