@@ -15,7 +15,7 @@ func (r *Record) Sync() (err error) {
 	if err != nil {
 		return r.Add()
 	}
-	_, err = Engine.Update(r)
+	_, err = Engine.Where("hostname=? AND user=?", r.Hostname, r.User).Update(r)
 	return
 }
 

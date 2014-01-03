@@ -6,25 +6,15 @@ import (
 	"os"
 
 	"git.apache.org/thrift.git/lib/go/thrift"
-	"github.com/shxsun/gossh/gsmaster/models"
+	"github.com/shxsun/gossh/models"
 )
-
-//func Test() {
-//	host := new(models.Host)
-//	host.Hostname = "xyzdas"
-//	host.Alias = "abc"
-//	n, err := models.Engine.InsertOne(host)
-//	if err != nil {
-//		log.Fatal(err)
-//	}
-//	log.Println(n)
-//}
 
 var (
 	server   = flag.Bool("server", false, "run as a server")
 	token    = flag.String("token", "abcdefg", "auth token for check identity")
 	addr     = flag.String("addr", "localhost:6523", "server address")
 	secure   = flag.Bool("secure", false, "enable secure")
+	verbose  = flag.Bool("v", true, "show verbose info")
 	protocol = "binary"
 	buffered = false
 	framed   = true

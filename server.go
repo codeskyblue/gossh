@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"git.apache.org/thrift.git/lib/go/thrift"
-	"github.com/shxsun/gossh/gsmaster/rpc"
+	"github.com/shxsun/gossh/rpc"
 )
 
 func runServer(transportFactory thrift.TTransportFactory, protocolFactory thrift.TProtocolFactory, addr string, secure bool) error {

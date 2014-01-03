@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 
-	"github.com/shxsun/gossh/gsmaster/models"
-	"github.com/shxsun/gossh/gsmaster/rpc"
+	"github.com/shxsun/gossh/models"
+	"github.com/shxsun/gossh/rpc"
 )
 
 type GsHandler struct{}

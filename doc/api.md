@@ -1,4 +1,6 @@
-## API of server
+## 已废弃 
+
+### API of server
 `Base URL = <server_addr:port>/api/v1/`
 
 REST接口

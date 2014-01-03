@@ -5,8 +5,8 @@ import (
 	"log"
 
 	//_ "github.com/lib/pq" //当某时间字段表现为0001-01-01 07:36:42+07:36:42形式的时候 会读不出数据
-	"github.com/lunny/xorm"
 	//_ "github.com/bylevel/pq"
+	"github.com/lunny/xorm"
 	_ "github.com/mattn/go-sqlite3"
 )
 
@@ -37,7 +37,7 @@ func XConDb() (*xorm.Engine, error) {
 	case dbtype == "pgsql":
 		return xorm.NewEngine("postgres", "user=postgres password=jn!@#$%^&* dbname=pgsql sslmode=disable")
 	}
-	return nil, errors.New("尚未设定数据库连接")
+	return nil, errors.New("dbtype not specified")
 }
 
 func SetEngine() (*xorm.Engine, error) {
@@ -45,7 +45,7 @@ func SetEngine() (*xorm.Engine, error) {
 	Engine, err = XConDb()
 	//Engine.Mapper = xorm.SameMapper{}
 	//Engine.SetMaxConns(5)
-	Engine.ShowSQL = true
+	//Engine.ShowSQL = true
 
 	cacher := xorm.NewLRUCacher(xorm.NewMemoryStore(), 1000)
 	Engine.SetDefaultCacher(cacher)
