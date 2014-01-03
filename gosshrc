@@ -1,0 +1,8 @@
+;
+; gossh ini setting file
+
+dbfile = ~/.gossh/sqlite.db
+
+; default passwords
+;default-password = world
+;default-password = hello
