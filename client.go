@@ -87,7 +87,7 @@ func (hi *HostInfo) Interactive() (err error) {
 
 // used for sshpass
 func (hi *HostInfo) GenSshpassArgs(args []string) []string {
-	return append([]string{"-e", "ssh", "-l", hi.Username, hi.Hostname}, args...)
+	return append([]string{"-e", "ssh", "-o", "StrictHostKeyChecking=no", "-l", hi.Username, hi.Hostname}, args...)
 }
 
 func (hi *HostInfo) CheckSshConnection() (err error) {
