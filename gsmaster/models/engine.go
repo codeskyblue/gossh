@@ -45,7 +45,7 @@ func SetEngine() (*xorm.Engine, error) {
 	Engine, err = XConDb()
 	//Engine.Mapper = xorm.SameMapper{}
 	//Engine.SetMaxConns(5)
-	//Engine.ShowSQL = true
+	Engine.ShowSQL = true
 
 	cacher := xorm.NewLRUCacher(xorm.NewMemoryStore(), 1000)
 	Engine.SetDefaultCacher(cacher)

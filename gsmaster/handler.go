@@ -17,12 +17,14 @@ func (p *GsHandler) LookHost(host string, user string) (r *rpc.Data, err error) 
 	r = &rpc.Data{}
 	rd, err := models.GetRecord(host, user)
 	if err != nil {
-		//r.Error =
+		r.ErrorA1 = err.Error()
+		return r, nil
 	}
+
 	r.Hostname = rd.Hostname
 	r.Password = rd.Pass
 	r.Username = rd.User
-	//r.Hostname = "abcdefg"
+
 	return r, nil
 }
 
