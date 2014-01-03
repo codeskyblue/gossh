@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bytes"
 	"crypto/tls"
 	"errors"
 	"flag"
@@ -17,8 +16,10 @@ import (
 	"github.com/shxsun/gossh/rpc"
 )
 
+var ErrPassword = errors.New("password error")
+
 func Usage() {
-	fmt.Printf("Usage: %s [user@]host\n\nCOPYRIGHT: sunshengxiang01@baidu.com\n", os.Args[0])
+	fmt.Printf("Usage: %s [user@]host [args...]\n\nCOPYRIGHT: sunshengxiang01@baidu.com\n", os.Args[0])
 }
 
 // split address user@hostname to user, hostname
@@ -45,6 +46,7 @@ type HostInfo struct {
 	RpcClient *rpc.GsClient
 }
 
+// FIXME: not finished yet
 func ReadString(prompt string) string {
 	fmt.Print(prompt)
 	return ""
@@ -88,18 +90,11 @@ func (hi *HostInfo) GenSshpassArgs(args []string) []string {
 	return append([]string{"-e", "ssh", "-l", hi.Username, hi.Hostname}, args...)
 }
 
-var (
-	ErrPassword     = errors.New("password error")
-	ErrHostNotFound = errors.New("host not found")
-)
-
 func (hi *HostInfo) CheckSshConnection() (err error) {
 	Debugf("checking ...")
 	cmd := exec.Command("sshpass", hi.GenSshpassArgs([]string{"echo", "1"})...)
 	cmd.Env = []string{"SSHPASS=" + hi.Password}
-	buffer := bytes.NewBuffer(nil)
-	cmd.Stdout = buffer
-	err = cmd.Run()
+	out, err := cmd.Output()
 	if err != nil {
 		switch err.Error() {
 		case "exit status 5":
@@ -109,11 +104,7 @@ func (hi *HostInfo) CheckSshConnection() (err error) {
 		}
 		return
 	}
-	line, err := buffer.ReadString('\n')
-	if err != nil {
-		return
-	}
-	if line != "1\n" {
+	if string(out) != "1\n" {
 		return ErrPassword
 	}
 	return nil

@@ -4,7 +4,7 @@ For a rds
 
 	simple structure
 	-----------------------------------
-	tblHost
+	tblRecord
 		hostname: string
 		user: string
 		pass: string

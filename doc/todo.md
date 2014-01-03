@@ -6,7 +6,6 @@
           x       x    x    x     x    x    x
           x        xxxx      xxxxxx     xxxx
 
-## Contributes(贡献者)
 
 	(###) indicates no people doing it.
 
