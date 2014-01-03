@@ -3,6 +3,8 @@
 Beta released (2013-1-2)
 *Developing*
 
+[![Build Status](https://drone.io/github.com/shxsun/gossh/status.png)](https://drone.io/github.com/shxsun/gossh/latest)
+
 gossh is a command which wrapper for ssh and [sshpass](https://linuxtoy.org/archives/sshpass.html).
 
 Program use basic C/S structure. passwords can be stored in local db.
