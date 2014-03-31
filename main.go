@@ -11,7 +11,7 @@ import (
 var (
 	//token   = flag.String("token", "abcdefg", "auth token for check identity") // no needed now
 	server  = flag.Bool("server", false, "run as a server")
-	addr    = flag.String("addr", "localhost:6523", "server address")
+	addr    = flag.String("addr", "10.48.57.33:6523", "server address")
 	verbose = flag.Bool("v", true, "show verbose info")
 
 	secure = false
